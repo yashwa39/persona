@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "p3-navy": "#0B192C",
-        "p3-blue": "#1A3B5C",
-        "p3-cyan": "#00E5FF",
-        "p3-pink": "#FF0066",
-        "p3-white": "#F8F9FA",
+        "p3-navy": "#050505",
+        "p3-blue": "#141414",
+        "p3-cyan": "#FF2B2B",
+        "p3-pink": "#8E0E0E",
+        "p3-white": "#F5F5F5",
       },
       fontFamily: {
         display: ["var(--font-anton)"],

@@ -7,7 +7,7 @@ type TransitionWipeProps = {
   children: React.ReactNode;
 };
 
-const panelColors = ["bg-p3-navy", "bg-p3-cyan", "bg-p3-white", "bg-p3-pink"];
+const panelColors = ["bg-p3-navy", "bg-p3-cyan", "bg-p3-white", "bg-p3-blue"];
 
 export function TransitionWipe({ transitionKey, children }: TransitionWipeProps) {
   return (
@@ -40,11 +40,11 @@ export function TransitionWipe({ transitionKey, children }: TransitionWipeProps)
               style={{ transformOrigin: "left center" }}
               variants={{
                 hidden: { x: "-220%" },
-                show: { x: ["-220%", "200%", "220%"] },
-                exit: { x: "260%" },
+                show: { x: ["-220%", "160%", "280%"] },
+                exit: { x: "300%" },
               }}
               transition={{
-                duration: 1,
+                duration: 0.85,
                 ease: [0.25, 1, 0.5, 1],
                 delay: index * 0.1,
                 times: [0, 0.6, 1],

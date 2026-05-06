@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { TransitionWipe } from "@/components/transition-wipe";
 import { MainMenu } from "@/components/main-menu";
 import { ListView } from "@/components/list-view";
@@ -19,7 +18,7 @@ const menuToView: Record<string, View> = {
   "SIDE PROJECTS": "LIST",
 };
 
-const heroImage = "/media/persona-clock.jpeg";
+const heroVideo = "/media/inspiration-ideas.mp4";
 
 export default function Home() {
   const [view, setView] = useState<View>("HOME");
@@ -68,10 +67,10 @@ export default function Home() {
             initial={{ x: 90, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="pointer-events-none relative self-end justify-self-end"
+            className="relative self-end justify-self-end"
           >
             <div
-              className="h-[70vh] min-h-[420px] w-[320px] max-w-[85vw] overflow-hidden border-2 border-p3-cyan bg-p3-blue/70 shadow-[0_0_45px_rgba(0,229,255,0.25)] md:w-[430px]"
+              className="relative h-[70vh] min-h-[420px] w-[320px] max-w-[85vw] overflow-hidden border-2 border-p3-cyan bg-p3-blue/70 shadow-[0_0_45px_rgba(255,43,43,0.32)] md:w-[430px]"
               style={{ clipPath: "polygon(14% 0, 100% 0, 86% 100%, 0% 100%)" }}
             >
               <motion.div
@@ -79,14 +78,16 @@ export default function Home() {
                 animate={{ scale: [1, 1.03, 1] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Image
-                  src={heroImage}
-                  alt="Blue Persona-style character portrait with a clock motif"
-                  fill
-                  sizes="(max-width: 1024px) 85vw, 430px"
-                  className="object-cover object-[50%_24%]"
-                  priority
+                <video
+                  src={heroVideo}
+                  className="h-full w-full object-cover object-center saturate-110 contrast-110"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
                 />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(5,5,5,0.68),rgba(5,5,5,0.15))]" />
               </motion.div>
             </div>
           </motion.aside>

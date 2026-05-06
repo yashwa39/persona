@@ -15,7 +15,7 @@ const bubbles = Array.from({ length: 16 }, (_, i) => ({
 export function BackgroundScene() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,#1A3B5C_0%,#0B192C_35%,#091220_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,#2A0A0A_0%,#130707_35%,#050505_100%)]" />
 
       {watermarks.map((word, idx) => (
         <motion.p
