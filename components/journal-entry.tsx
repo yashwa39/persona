@@ -43,9 +43,13 @@ function renderMarkdownGlow(text: string) {
 export function JournalEntry({
   entry,
   viewMode,
+  canDelete,
+  onDelete,
 }: {
   entry: JournalEntryData;
   viewMode: "timeline" | "grid";
+  canDelete?: boolean;
+  onDelete?: (id: string) => void;
 }) {
   const intensity = phaseIntensity(entry.phase);
   return (
@@ -89,8 +93,19 @@ export function JournalEntry({
                 {phaseIcon[entry.phase]} {entry.phase} MOON
               </p>
             </div>
-            <div className="bg-p3-cyan px-2 py-1 -skew-x-12 text-[10px] uppercase tracking-[0.18em] text-p3-navy">
-              <span className="block skew-x-12">TOP SECRET</span>
+            <div className="flex items-center gap-2">
+              {canDelete && (
+                <button
+                  type="button"
+                  onClick={() => onDelete?.(entry.id)}
+                  className="bg-black/70 px-2 py-1 -skew-x-12 text-[10px] uppercase tracking-[0.18em] text-p3-white border border-p3-cyan/70 hover:bg-p3-cyan hover:text-p3-navy transition-colors"
+                >
+                  <span className="block skew-x-12">DELETE</span>
+                </button>
+              )}
+              <div className="bg-p3-cyan px-2 py-1 -skew-x-12 text-[10px] uppercase tracking-[0.18em] text-p3-navy">
+                <span className="block skew-x-12">TOP SECRET</span>
+              </div>
             </div>
           </div>
 

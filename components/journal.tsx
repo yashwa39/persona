@@ -189,7 +189,12 @@ export function Journal({ muted }: { muted: boolean }) {
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <JournalEntry entry={entry} viewMode={viewMode} />
+                      <JournalEntry
+                        entry={entry}
+                        viewMode={viewMode}
+                        canDelete={entry.id.startsWith("user-")}
+                        onDelete={(id) => setUserPosts((prev) => prev.filter((p) => p.id !== id))}
+                      />
                     </motion.div>
                   ))}
                 </AnimatePresence>
