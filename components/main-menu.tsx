@@ -6,9 +6,10 @@ const menuItems = ["ABOUT ME", "RESUME", "GITHUB LINK", "SOCIALS", "SIDE PROJECT
 
 type MainMenuProps = {
   onSelect: (item: string) => void;
+  onHover?: () => void;
 };
 
-export function MainMenu({ onSelect }: MainMenuProps) {
+export function MainMenu({ onSelect, onHover }: MainMenuProps) {
   return (
     <div className="w-full max-w-2xl pt-6">
       <div
@@ -33,6 +34,7 @@ export function MainMenu({ onSelect }: MainMenuProps) {
             <button
               type="button"
               onClick={() => onSelect(item)}
+              onMouseEnter={onHover}
               className="relative block w-full text-left"
             >
               <motion.div

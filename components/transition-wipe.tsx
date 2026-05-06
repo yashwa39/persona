@@ -40,8 +40,8 @@ export function TransitionWipe({ transitionKey, children }: TransitionWipeProps)
               style={{ transformOrigin: "left center" }}
               variants={{
                 hidden: { x: "-220%" },
-                show: { x: ["-220%", "160%", "280%"] },
-                exit: { x: "300%" },
+                show: { x: ["-220%", "160%", "420%"], opacity: [1, 1, 0] },
+                exit: { x: "500%", opacity: 0 },
               }}
               transition={{
                 duration: 0.85,

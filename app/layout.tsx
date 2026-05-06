@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import "./globals.css";
-import { BackgroundScene } from "@/components/background-scene";
 
 const anton = Anton({
   variable: "--font-anton",
@@ -27,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${anton.variable} ${inter.variable} h-full antialiased`}>
       <body className="min-h-full bg-p3-navy text-p3-white font-body">
-        <BackgroundScene />
         <div className="relative z-10 flex min-h-full flex-col">{children}</div>
       </body>
     </html>
