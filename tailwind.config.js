@@ -13,6 +13,7 @@ module.exports = {
       fontFamily: {
         display: ["var(--font-anton)"],
         body: ["var(--font-inter)"],
+        mono: ["var(--font-mono)"],
       },
       keyframes: {
         "water-drift": {

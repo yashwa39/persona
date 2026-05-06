@@ -18,6 +18,28 @@ const phaseIcon: Record<MoonPhase, string> = {
   CRESCENT: "◔",
 };
 
+function phaseIntensity(phase: MoonPhase) {
+  if (phase === "FULL") return 1;
+  if (phase === "HALF") return 0.72;
+  return 0.5;
+}
+
+function renderMarkdownGlow(text: string) {
+  const tokens = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+  return tokens.map((t, i) => {
+    const isMd = t.startsWith("**") && t.endsWith("**") && t.length > 4;
+    if (!isMd) return <span key={i}>{t}</span>;
+    return (
+      <span
+        key={i}
+        className="text-p3-pink drop-shadow-[0_0_14px_rgba(142,14,14,0.65)]"
+      >
+        {t.slice(2, -2)}
+      </span>
+    );
+  });
+}
+
 export function JournalEntry({
   entry,
   viewMode,
@@ -25,6 +47,7 @@ export function JournalEntry({
   entry: JournalEntryData;
   viewMode: "timeline" | "grid";
 }) {
+  const intensity = phaseIntensity(entry.phase);
   return (
     <motion.article
       layout
@@ -35,11 +58,17 @@ export function JournalEntry({
       className="group relative"
     >
       <div
-        className={`relative overflow-hidden border border-p3-cyan/70 bg-p3-blue/65 p-4 pl-7 -skew-x-12 shadow-[0_0_30px_rgba(255,43,43,0.18)] ${
+        className={`relative overflow-hidden border border-p3-cyan/90 bg-p3-blue/75 p-5 pl-8 -skew-x-12 ${
           viewMode === "grid" ? "min-h-44" : ""
         }`}
         style={{ clipPath: "polygon(0 0, 100% 5%, 100% 100%, 0 95%)" }}
       >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+          style={{
+            boxShadow: `0 0 52px rgba(255,43,43,${0.12 + intensity * 0.28})`,
+          }}
+        />
         {/* Hover glitch overlay */}
         <motion.div
           className="pointer-events-none absolute inset-0 opacity-0"
@@ -67,7 +96,7 @@ export function JournalEntry({
 
           {/* “Typewriter” decrypt reveal via clip-path */}
           <motion.p
-            className="mt-3 font-body text-sm leading-6 tracking-[0.02em] text-p3-white/90"
+            className="mt-3 font-body text-[15px] leading-6 tracking-[0.02em] text-p3-white"
             initial={{ clipPath: "inset(0 100% 0 0)" }}
             whileInView={{ clipPath: "inset(0 0% 0 0)" }}
             viewport={{ once: true }}
@@ -82,7 +111,7 @@ export function JournalEntry({
                     : ""
                 }
               >
-                {chunk.text}
+                {chunk.redacted ? chunk.text : renderMarkdownGlow(chunk.text)}
               </span>
             ))}
           </motion.p>

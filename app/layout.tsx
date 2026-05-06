@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Inter } from "next/font/google";
+import { Anton, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const anton = Anton({
@@ -10,6 +10,11 @@ const anton = Anton({
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -24,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${anton.variable} ${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${anton.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}>
       <body className="min-h-full bg-p3-navy text-p3-white font-body">
         <div className="relative z-10 flex min-h-full flex-col">{children}</div>
       </body>
