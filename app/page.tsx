@@ -11,6 +11,7 @@ import { MediaShowcase } from "@/components/media-showcase";
 import { BackgroundScene } from "@/components/background-scene";
 import { SocialStatsRadar } from "@/components/social-stats-radar";
 import { useKonami, useUiSfx } from "@/components/ui-hooks";
+import { AllOutAttackCutIn } from "@/components/all-out-attack-cut-in";
 
 type View = "HOME" | "LIST" | "PROFILE";
 
@@ -31,6 +32,7 @@ export default function Home() {
   const [darkHour, setDarkHour] = useState(false);
   const [summonActive, setSummonActive] = useState(false);
   const [finishActive, setFinishActive] = useState(false);
+  const [cutInActive, setCutInActive] = useState(false);
   const sfx = useUiSfx();
 
   useKonami(() => {
@@ -54,6 +56,12 @@ export default function Home() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    if (!cutInActive) return;
+    const t = window.setTimeout(() => setCutInActive(false), 1400);
+    return () => window.clearTimeout(t);
+  }, [cutInActive]);
+
   const subtitle = useMemo(() => {
     if (view === "LIST") return "Skill Report";
     if (view === "PROFILE") return "Persona Data";
@@ -72,6 +80,7 @@ export default function Home() {
           darkHour ? "dark-hour" : ""
         }`}
       >
+        <AllOutAttackCutIn trigger={cutInActive} />
         <BackgroundScene mouseX={mousePos.x} mouseY={mousePos.y} darkHour={darkHour} />
         <div className="absolute right-4 top-4 z-30 flex items-center gap-2">
           <button
@@ -109,6 +118,7 @@ export default function Home() {
                   window.open("https://github.com/yashwa39/persona", "_blank");
                   return;
                 }
+                if (item === "RESUME") setCutInActive(true);
                 setView(menuToView[item] ?? "HOME");
               }}
             />
@@ -128,6 +138,7 @@ export default function Home() {
                   type="button"
                   onClick={() => {
                     setFinishActive(true);
+                    setCutInActive(true);
                     sfx.playConfirm();
                     window.setTimeout(() => setFinishActive(false), 2200);
                   }}
