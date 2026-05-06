@@ -52,6 +52,7 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
   const [playType] = useSound("/sfx/type.mp3", { volume: 0.25, interrupt: true, soundEnabled: !muted });
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const lastTypeAtRef = useRef(0);
 
   const dateStr = useMemo(() => new Date().toISOString().slice(0, 10), []);
   const phase = useMemo(() => moonPhaseFromDate(dateStr), [dateStr]);
@@ -239,12 +240,16 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
                           setContent(next);
                         }}
                         onKeyDown={() => {
-                          if (!muted) playType();
+                          if (muted) return;
+                          const now = performance.now();
+                          if (now - lastTypeAtRef.current < 45) return;
+                          lastTypeAtRef.current = now;
+                          playType();
                         }}
-                        className="h-60 w-full resize-none bg-transparent font-mono text-sm leading-6 tracking-[0.06em] text-p3-white outline-none md:h-72 md:text-[15px]"
+                        className="h-60 w-full resize-none bg-transparent font-mono text-[15px] leading-6 tracking-[0.02em] text-p3-white antialiased outline-none md:h-72 md:text-[16px]"
                         placeholder="Type… use **double asterisks** for glow."
                       />
-                      <div className="mt-2 text-sm text-p3-white/90 font-mono tracking-[0.06em]">
+                      <div className="mt-2 text-[13px] text-p3-white/90 font-mono tracking-[0.02em] antialiased">
                         {cursorOn && content.length === 0 ? "_" : ""}
                       </div>
                     </motion.div>
