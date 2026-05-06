@@ -132,20 +132,20 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
           />
 
           <motion.div
-            initial={{ x: "110%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "110%" }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="absolute inset-y-0 right-0 w-full max-w-4xl bg-black/40 p-6"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 30, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute inset-0 flex items-center justify-center p-3 md:p-8"
           >
             <div
-              className={`relative h-full bg-p3-blue/85 p-6 pl-10 -skew-x-6 border-4 ${moodColor}`}
+              className={`relative w-full max-w-4xl overflow-hidden bg-p3-blue/85 -skew-x-6 border-4 ${moodColor}`}
               style={{
                 clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)",
-                transformOrigin: "right center",
+                transformOrigin: "center",
               }}
             >
-              <div className="skew-x-6">
+              <div className="skew-x-6 max-h-[86vh] overflow-y-auto p-5 pl-8 md:p-7 md:pl-10">
                 <div className="flex items-start justify-between gap-4">
                   <div className="bg-p3-cyan px-4 py-2 -skew-x-12">
                     <p className="block skew-x-12 font-display text-sm uppercase tracking-[0.18em] text-p3-navy">
@@ -246,7 +246,7 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
                           lastTypeAtRef.current = now;
                           playType();
                         }}
-                        className="h-60 w-full resize-none bg-transparent font-mono text-[15px] leading-6 tracking-[0.02em] text-p3-white antialiased outline-none md:h-72 md:text-[16px]"
+                        className="h-52 w-full resize-none bg-transparent font-mono text-[15px] leading-6 tracking-[0.02em] text-p3-white antialiased outline-none md:h-64 md:text-[16px]"
                         placeholder="Type… use **double asterisks** for glow."
                       />
                       <div className="mt-2 text-[13px] text-p3-white/90 font-mono tracking-[0.02em] antialiased">
