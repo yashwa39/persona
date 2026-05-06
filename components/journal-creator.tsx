@@ -139,13 +139,13 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
             className="absolute inset-0 flex items-center justify-center p-3 md:p-8"
           >
             <div
-              className={`relative w-full max-w-4xl overflow-hidden bg-p3-blue/85 -skew-x-6 border-4 ${moodColor}`}
+              className={`relative w-full max-w-4xl overflow-hidden bg-p3-blue/85 -skew-x-3 border-4 ${moodColor}`}
               style={{
-                clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)",
+                clipPath: "polygon(3% 0, 100% 0, 97% 100%, 0% 100%)",
                 transformOrigin: "center",
               }}
             >
-              <div className="skew-x-6 max-h-[86vh] overflow-y-auto p-5 pl-8 md:p-7 md:pl-10">
+              <div className="skew-x-3 max-h-[86vh] overflow-y-auto p-6 md:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div className="bg-p3-cyan px-4 py-2 -skew-x-12">
                     <p className="block skew-x-12 font-display text-sm uppercase tracking-[0.18em] text-p3-navy">
@@ -161,27 +161,27 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
                   </button>
                 </div>
 
-                <div className="mt-5 grid gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
+                <div className="mt-5 grid gap-4 md:grid-cols-[minmax(0,1fr)_240px]">
                   <div>
                     <label className="block text-xs uppercase tracking-[0.16em] text-p3-white/80">TITLE</label>
                     <input
                       value={title}
                       onChange={(e) => setTitle(e.target.value.slice(0, 60))}
-                      className="mt-2 w-full bg-black/40 px-4 py-3 text-p3-white outline-none -skew-x-6"
-                      style={{ clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)" }}
+                      className="mt-2 w-full bg-black/45 px-4 py-3 text-p3-white outline-none"
+                      style={{ clipPath: "polygon(3% 0, 100% 0, 97% 100%, 0% 100%)" }}
                       placeholder="VELVET RECORD / ENTRY"
                     />
                   </div>
                   <div className="space-y-2">
-                    <div className="bg-black/40 px-4 py-3 -skew-x-6" style={{ clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)" }}>
-                      <p className="skew-x-6 text-xs uppercase tracking-[0.16em] text-p3-white/80">MOON PHASE</p>
-                      <p className="skew-x-6 font-display text-lg tracking-[0.14em] text-p3-cyan">
+                    <div className="bg-black/45 px-4 py-3" style={{ clipPath: "polygon(3% 0, 100% 0, 97% 100%, 0% 100%)" }}>
+                      <p className="text-xs uppercase tracking-[0.16em] text-p3-white/80">MOON PHASE</p>
+                      <p className="font-display text-lg tracking-[0.14em] text-p3-cyan">
                         {phase} / INTENSITY {(intensity * 100).toFixed(0)}%
                       </p>
                     </div>
-                    <div className="bg-black/40 px-4 py-3 -skew-x-6" style={{ clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)" }}>
-                      <p className="skew-x-6 text-xs uppercase tracking-[0.16em] text-p3-white/80">MOOD</p>
-                      <div className="mt-2 flex gap-2 skew-x-6">
+                    <div className="bg-black/45 px-4 py-3" style={{ clipPath: "polygon(3% 0, 100% 0, 97% 100%, 0% 100%)" }}>
+                      <p className="text-xs uppercase tracking-[0.16em] text-p3-white/80">MOOD</p>
+                      <div className="mt-2 flex flex-wrap gap-2">
                         {(["ANGRY", "HAPPY", "MELANCHOLIC"] as const).map((m) => (
                           <button
                             key={m}
@@ -202,9 +202,9 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
                 <div className="mt-5">
                   <label className="block text-xs uppercase tracking-[0.16em] text-p3-white/80">VELVET RECORDS TERMINAL</label>
                   <div
-                    className="relative mt-2 bg-black/50 p-4 -skew-x-6 border border-p3-cyan/70"
+                    className="relative mt-2 bg-black/55 p-4 border border-p3-cyan/80"
                     style={{
-                      clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)",
+                      clipPath: "polygon(3% 0, 100% 0, 97% 100%, 0% 100%)",
                       boxShadow: `0 0 48px rgba(255,43,43,${0.12 + intensity * 0.22})`,
                     }}
                   >
@@ -230,7 +230,7 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
                     <motion.div
                       animate={isSubmitting ? { x: [0, -6, 6, -4, 4, 0] } : { x: 0 }}
                       transition={{ duration: 0.35 }}
-                      className="skew-x-6"
+                      className=""
                     >
                       <textarea
                         ref={textareaRef}
@@ -246,7 +246,7 @@ export function JournalCreator({ open, onClose, onCreate, muted }: JournalCreato
                           lastTypeAtRef.current = now;
                           playType();
                         }}
-                        className="h-52 w-full resize-none bg-transparent font-mono text-[15px] leading-6 tracking-[0.02em] text-p3-white antialiased outline-none md:h-64 md:text-[16px]"
+                        className="h-56 w-full resize-none bg-transparent font-mono text-[15px] leading-6 tracking-[0.02em] text-p3-white antialiased outline-none md:h-72 md:text-[16px]"
                         placeholder="Type… use **double asterisks** for glow."
                       />
                       <div className="mt-2 text-[13px] text-p3-white/90 font-mono tracking-[0.02em] antialiased">
