@@ -12,12 +12,15 @@ import { BackgroundScene } from "@/components/background-scene";
 import { SocialStatsRadar } from "@/components/social-stats-radar";
 import { useKonami, useUiSfx } from "@/components/ui-hooks";
 import { AllOutAttackCutIn } from "@/components/all-out-attack-cut-in";
+import { DarkHourClockOverlay } from "@/components/dark-hour-clock-overlay";
+import { Journal } from "@/components/journal";
 
-type View = "HOME" | "LIST" | "PROFILE";
+type View = "HOME" | "LIST" | "PROFILE" | "JOURNAL";
 
 const menuToView: Record<string, View> = {
   "ABOUT ME": "PROFILE",
   RESUME: "LIST",
+  JOURNAL: "JOURNAL",
   "GITHUB LINK": "HOME",
   SOCIALS: "HOME",
   "SIDE PROJECTS": "LIST",
@@ -33,6 +36,7 @@ export default function Home() {
   const [summonActive, setSummonActive] = useState(false);
   const [finishActive, setFinishActive] = useState(false);
   const [cutInActive, setCutInActive] = useState(false);
+  const [darkHourOverlay, setDarkHourOverlay] = useState(false);
   const sfx = useUiSfx();
 
   useKonami(() => {
@@ -62,6 +66,12 @@ export default function Home() {
     return () => window.clearTimeout(t);
   }, [cutInActive]);
 
+  useEffect(() => {
+    if (!darkHourOverlay) return;
+    const t = window.setTimeout(() => setDarkHourOverlay(false), 1500);
+    return () => window.clearTimeout(t);
+  }, [darkHourOverlay]);
+
   const subtitle = useMemo(() => {
     if (view === "LIST") return "Skill Report";
     if (view === "PROFILE") return "Persona Data";
@@ -81,11 +91,18 @@ export default function Home() {
         }`}
       >
         <AllOutAttackCutIn trigger={cutInActive} />
+        <DarkHourClockOverlay trigger={darkHourOverlay} />
         <BackgroundScene mouseX={mousePos.x} mouseY={mousePos.y} darkHour={darkHour} />
         <div className="absolute right-4 top-4 z-30 flex items-center gap-2">
           <button
             type="button"
-            onClick={() => setDarkHour((value) => !value)}
+            onClick={() =>
+              setDarkHour((value) => {
+                const next = !value;
+                if (next) setDarkHourOverlay(true);
+                return next;
+              })
+            }
             className="bg-p3-blue/80 px-3 py-1 -skew-x-12 text-xs uppercase tracking-[0.1em]"
           >
             <span className="block skew-x-12">{darkHour ? "Exit Dark Hour" : "Dark Hour"}</span>
@@ -133,6 +150,7 @@ export default function Home() {
               {view === "LIST" && <ListView />}
               {view === "LIST" && <SocialStatsRadar />}
               {view === "PROFILE" && <ProfileCard />}
+              {view === "JOURNAL" && <Journal muted={sfx.muted} />}
               {view === "PROFILE" && (
                 <button
                   type="button"

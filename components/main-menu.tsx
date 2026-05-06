@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const menuItems = ["ABOUT ME", "RESUME", "GITHUB LINK", "SOCIALS", "SIDE PROJECTS"];
+const menuItems = ["ABOUT ME", "RESUME", "JOURNAL", "GITHUB LINK", "SOCIALS", "SIDE PROJECTS"];
 
 type MainMenuProps = {
   onSelect: (item: string) => void;
