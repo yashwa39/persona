@@ -21,7 +21,7 @@ export function ListView() {
         </div>
       </div>
 
-      <h2 className="mb-6 font-display text-7xl uppercase tracking-[0.25em] text-p3-white -skew-x-12">
+      <h2 className="mb-6 font-display text-7xl uppercase leading-none tracking-[0.1em] text-p3-white -skew-x-12 md:tracking-[0.18em]">
         <span className="inline-block skew-x-12">LIST</span>
       </h2>
 
@@ -38,12 +38,12 @@ export function ListView() {
           >
             <div className="skew-x-12">
               <span className="mr-3 font-display text-p3-cyan">{row.id}</span>
-              <span className="font-display text-3xl tracking-[0.14em] text-p3-white group-hover:text-p3-cyan">
+              <span className="font-display text-2xl tracking-[0.1em] text-p3-white group-hover:text-p3-cyan md:text-3xl md:tracking-[0.14em]">
                 {row.label}
               </span>
             </div>
             <div className="bg-p3-pink px-3 py-1 -skew-x-12">
-              <span className="block skew-x-12 font-display tracking-[0.12em] text-p3-white">
+              <span className="block skew-x-12 font-display tracking-[0.1em] text-p3-white md:tracking-[0.12em]">
                 RANK {row.rank}
               </span>
             </div>

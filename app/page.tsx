@@ -7,6 +7,7 @@ import { TransitionWipe } from "@/components/transition-wipe";
 import { MainMenu } from "@/components/main-menu";
 import { ListView } from "@/components/list-view";
 import { ProfileCard } from "@/components/profile-card";
+import { MediaShowcase } from "@/components/media-showcase";
 
 type View = "HOME" | "LIST" | "PROFILE";
 
@@ -17,6 +18,8 @@ const menuToView: Record<string, View> = {
   SOCIALS: "HOME",
   "SIDE PROJECTS": "LIST",
 };
+
+const heroImage = "/media/persona-clock.jpeg";
 
 export default function Home() {
   const [view, setView] = useState<View>("HOME");
@@ -31,12 +34,12 @@ export default function Home() {
     <TransitionWipe transitionKey={view}>
       <main className="relative min-h-screen overflow-hidden px-6 py-8 md:px-10">
         <div className="mb-6 inline-block bg-p3-cyan px-4 py-2 -skew-x-12">
-          <span className="block skew-x-12 font-display text-lg uppercase tracking-[0.18em] text-p3-navy">
+          <span className="block skew-x-12 font-display text-lg uppercase leading-tight tracking-[0.1em] text-p3-navy md:text-xl md:tracking-[0.16em]">
             {view} / {subtitle}
           </span>
         </div>
 
-        <div className="grid min-h-[80vh] grid-cols-1 gap-8 lg:grid-cols-[1fr_460px]">
+        <div className="grid min-h-[80vh] grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_460px]">
           <section>
             <MainMenu
               onSelect={(item) => {
@@ -57,6 +60,7 @@ export default function Home() {
             >
               {view === "LIST" && <ListView />}
               {view === "PROFILE" && <ProfileCard />}
+              {view === "HOME" && <MediaShowcase />}
             </motion.div>
           </section>
 
@@ -76,11 +80,11 @@ export default function Home() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=900&q=80"
-                  alt="Main character portrait"
+                  src={heroImage}
+                  alt="Blue Persona-style character portrait with a clock motif"
                   fill
                   sizes="(max-width: 1024px) 85vw, 430px"
-                  className="object-cover"
+                  className="object-cover object-[50%_24%]"
                   priority
                 />
               </motion.div>
