@@ -33,8 +33,8 @@ export function ListView() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.12 }}
             whileHover={{ x: 8 }}
-            className="group grid grid-cols-[1fr_auto] items-center gap-4 bg-p3-blue/70 px-4 py-3 -skew-x-12"
-            style={{ clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)" }}
+            className="group grid grid-cols-[1fr_auto] items-center gap-4 bg-p3-blue/70 pl-7 pr-4 py-3 -skew-x-12"
+            style={{ clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0% 100%)" }}
           >
             <div className="skew-x-12">
               <span className="mr-3 font-display text-p3-cyan">{row.id}</span>

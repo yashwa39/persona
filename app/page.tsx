@@ -31,14 +31,14 @@ export default function Home() {
 
   return (
     <TransitionWipe transitionKey={view}>
-      <main className="relative min-h-screen overflow-hidden px-6 py-8 md:px-10">
+      <main className="relative min-h-screen overflow-hidden px-6 py-8 md:pl-10 md:pr-2 lg:pr-0">
         <div className="mb-6 inline-block bg-p3-cyan px-4 py-2 -skew-x-12">
           <span className="block skew-x-12 font-display text-lg uppercase leading-tight tracking-[0.1em] text-p3-navy md:text-xl md:tracking-[0.16em]">
             {view} / {subtitle}
           </span>
         </div>
 
-        <div className="grid min-h-[80vh] grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_460px]">
+        <div className="grid min-h-[80vh] grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_430px]">
           <section>
             <MainMenu
               onSelect={(item) => {
@@ -67,11 +67,11 @@ export default function Home() {
             initial={{ x: 90, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative self-end justify-self-end"
+            className="relative justify-self-end lg:self-start lg:mt-24"
           >
             <div
-              className="relative h-[70vh] min-h-[420px] w-[320px] max-w-[85vw] overflow-hidden border-2 border-p3-cyan bg-p3-blue/70 shadow-[0_0_45px_rgba(255,43,43,0.32)] md:w-[430px]"
-              style={{ clipPath: "polygon(14% 0, 100% 0, 86% 100%, 0% 100%)" }}
+              className="relative h-[58vh] min-h-[370px] w-[320px] max-w-[85vw] overflow-hidden border-2 border-p3-cyan bg-p3-blue/70 shadow-[0_0_45px_rgba(255,43,43,0.32)] md:w-[430px]"
+              style={{ clipPath: "polygon(10% 0, 100% 0, 90% 100%, 0% 100%)" }}
             >
               <motion.div
                 className="relative h-full w-full"

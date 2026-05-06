@@ -10,8 +10,8 @@ export function ProfileCard() {
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="relative bg-p3-blue/90 p-5 -skew-x-12 shadow-[0_0_40px_rgba(0,229,255,0.18)] md:p-6"
-        style={{ clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0% 100%)" }}
+        className="relative bg-p3-blue/90 p-5 pl-8 -skew-x-12 shadow-[0_0_40px_rgba(255,43,43,0.22)] md:p-6 md:pl-10"
+        style={{ clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)" }}
       >
         <div className="grid gap-6 skew-x-12 lg:grid-cols-[minmax(0,1fr)_260px]">
           <div>

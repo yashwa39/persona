@@ -11,7 +11,10 @@ type MainMenuProps = {
 export function MainMenu({ onSelect }: MainMenuProps) {
   return (
     <div className="w-full max-w-2xl pt-6">
-      <div className="mb-8 inline-block bg-p3-blue/70 px-6 py-3 -skew-x-12 shadow-[0_0_30px_rgba(0,229,255,0.2)]">
+      <div
+        className="mb-8 inline-block bg-p3-blue/70 px-8 py-3 -skew-x-12 shadow-[0_0_30px_rgba(255,43,43,0.25)]"
+        style={{ clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0% 100%)" }}
+      >
         <h1 className="skew-x-12 font-display text-4xl uppercase leading-none tracking-[0.08em] text-p3-white md:text-6xl md:tracking-[0.16em]">
           Jade&apos;s Persona
         </h1>
@@ -35,8 +38,8 @@ export function MainMenu({ onSelect }: MainMenuProps) {
               <motion.div
                 whileHover={{ x: -10, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative min-h-16 overflow-hidden px-5 py-4 -skew-x-12 transition-all duration-150"
-                style={{ clipPath: "polygon(10% 0, 100% 0, 90% 100%, 0% 100%)" }}
+                className="relative min-h-16 overflow-hidden pl-9 pr-5 py-4 -skew-x-12 transition-all duration-150"
+                style={{ clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0% 100%)" }}
               >
                 <span className="absolute inset-0 bg-p3-blue/80 group-hover:bg-p3-pink transition-colors duration-150" />
                 <span
